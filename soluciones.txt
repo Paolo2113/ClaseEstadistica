@@ -1,0 +1,60 @@
+#######################################################################################################################################
+# Teoría
+
+1. b 
+#--------------------------------------------------------------------------------------------------------------------------------------
+
+2. a 
+#--------------------------------------------------------------------------------------------------------------------------------------
+
+3. En la primera forma de la normal.
+#--------------------------------------------------------------------------------------------------------------------------------------
+
+4. Ambos son filtros pero Where es para una fila especifica y Having es para grupos.
+#--------------------------------------------------------------------------------------------------------------------------------------
+
+5. c
+#######################################################################################################################################
+# Práctica
+
+1.
+
+```SQL
+-- poner solución debajo de este mensaje
+
+	SELECT AVG(edad) Edad_Promedio
+	FROM alumnos
+	WHERE apellido LIKE "%ez";
+
+```
+
+2.
+
+```SQL
+-- poner solución debajo de este mensaje
+	
+	SELECT cal.nombre_materia, COUNT(alum.expediente) AS Alumnos_mayores
+	FROM alumnos AS alum
+	INNER JOIN calificaciones AS cal
+	USING(expediente)
+	WHERE edad > 20
+	GROUP BY nombre_materia
+	ORDER BY Alumnos_mayores DESC;
+
+```
+
+3.
+
+```SQL
+-- poner solución debajo de este mensaje
+
+	SELECT nombre, SUM(calificacion) AS Suma_Calificaciones
+	FROM alumnos
+	INNER JOIN calificaciones
+	USING(expediente)
+	WHERE nombre_materia = "Matemáticas" AND calificacion IS NOT NULL
+	GROUP BY nombre
+	ORDER BY calificacion DESC
+	LIMIT 1 OFFSET 1;
+
+```
